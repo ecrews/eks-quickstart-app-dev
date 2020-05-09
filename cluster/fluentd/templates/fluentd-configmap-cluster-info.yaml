@@ -8,10 +8,10 @@ data:
   cluster-info.json: |
     {
       "cluster": {
-        "name": "{{ .ClusterName }}"
+        "name": {{ .Values.cluster.name | quote }}
       },
       "logs": {
-        "region": "{{ .Region }}"
+        "region": {{ .Values.cluster.region | quote }}
       }
     }
 kind: ConfigMap
