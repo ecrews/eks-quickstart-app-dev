@@ -2,7 +2,7 @@
 #
 # Bootstraps Flux and Helm operator on a Kubernetes cluster.
 
-set -e 
+set -e
 
 GIT_ROOT_DIR="$(git rev-parse --show-toplevel)"
 
@@ -19,5 +19,20 @@ kustomize build "${GIT_ROOT_DIR}/base/helm-operator" | kubectl apply -f -
 kubectl -n flux rollout status deployment/helm-operator
 
 # Setup GitHub write access for Flux.
-FLUX_SSH_KEY="$(fluxctl identity --k8s-fwd-ns flux)"
-echo "${FLUX_SSH_KEY}"
+FLUX_KEY="$(fluxctl identity --k8s-fwd-ns flux)"
+
+current_context="$(kubectl config current-context)"
+cluster="${current_context#*@}"
+github_access_token="$(cat ${HOME}/github_access_token)"
+# Remove deploy key if it already exists.
+
+curl \
+ -i \
+ -u ecrews:$github_access_token  \
+ --data @- https://api.github.com/repos/ecrews/gitops-demo-fluxcd/keys << EOF
+{
+    "title" : "flux-${cluster}",
+    "key" : "${FLUX_KEY}",
+    "read_only" : false
+}
+EOF

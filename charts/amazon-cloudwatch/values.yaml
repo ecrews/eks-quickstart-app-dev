@@ -1,2 +1,2 @@
 cluster:
-  name: cluster-0
+  name: "cluster-0"
