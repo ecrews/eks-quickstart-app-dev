@@ -9,7 +9,6 @@ spec:
       containers:
         - name: flux
           args:
-            - --manifest-generation=true
             - --memcached-hostname=memcached.flux
             - --memcached-service=
             - --ssh-keygen-dir=/var/fluxd/keygen
