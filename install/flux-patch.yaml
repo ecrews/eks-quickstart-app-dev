@@ -15,5 +15,5 @@ spec:
             - --sync-interval=5m
             - --ssh-keygen-dir=/var/fluxd/keygen
             - --git-branch=master
-            - --git-path=cluster
+            - --git-path=clusters
             - --git-url=git@github.com:ecrews/eks-quickstart-app-dev
