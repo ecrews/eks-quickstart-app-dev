@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+#
+# Bootstraps Flux and Helm operator on a Kubernetes cluster.
+
+set -e 
+
+GIT_ROOT_DIR="$(git rev-parse --show-toplevel)"
+
+# Deploy Flux to the cluster using Kustomize.
+kubectl apply -k "${GIT_ROOT_DIR}/base/flux"
+
+# Wait for Flux to start.
+kubectl -n flux rollout status deployment/flux
+
+# Deploy Helm operator to the cluster using Kustomize.
+kustomize build "${GIT_ROOT_DIR}/base/helm-operator" | kubectl apply -f -
+
+# Wait for Helm operator to start.
+kubectl -n flux rollout status deployment/helm-operator
+
+# Setup GitHub write access for Flux.
+FLUX_SSH_KEY="$(fluxctl identity --k8s-fwd-ns flux)"
+echo "${FLUX_SSH_KEY}"

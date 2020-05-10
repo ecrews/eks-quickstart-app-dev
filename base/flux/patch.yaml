@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: flux
+  namespace: flux
 spec:
   template:
     spec:
@@ -9,11 +10,11 @@ spec:
         - name: flux
           args:
             - --manifest-generation=true
-            - --memcached-hostname=flux-memcached.flux-system
+            - --memcached-hostname=memcached.flux
             - --memcached-service=
-            - --git-poll-interval=5m
-            - --sync-interval=5m
             - --ssh-keygen-dir=/var/fluxd/keygen
             - --git-branch=master
-            - --git-path=clusters
-            - --git-url=git@github.com:ecrews/eks-quickstart-app-dev
+            - --git-path=clusters/cluster-0
+            - --git-user=“ecrews”
+            - --git-email=“ecrews”@users.noreply.github.com
+            - --git-url=git@github.com:“ecrews”/gitops-demo-fluxcd
