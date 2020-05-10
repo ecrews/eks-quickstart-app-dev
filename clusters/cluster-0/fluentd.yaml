@@ -1,4 +1,4 @@
---- apiVersion: helm.fluxcd.io/v1
+apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
   name: fluentd
@@ -10,6 +10,6 @@ spec:
     path: charts/fluentd
     ref: HEAD
   values:
-    - cluster:
-        name: "cluster-0"
-        region: "us-east-1"
+    cluster:
+      name: "cluster-0"
+      region: "us-east-1"
