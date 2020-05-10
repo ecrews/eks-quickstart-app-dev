@@ -14,6 +14,7 @@ spec:
             - --ssh-keygen-dir=/var/fluxd/keygen
             - --git-branch=master
             - --git-path=clusters/cluster-0
+            - --git-poll-interval=30s
             - --git-user=ecrews
             - --git-email=ecrews@users.noreply.github.com
             - --git-url=git@github.com:ecrews/gitops-demo-fluxcd
