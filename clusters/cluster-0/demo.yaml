@@ -10,8 +10,6 @@ spec:
     ref: v3.x
     path: charts/podinfo
   values:
-   faults: 
-     error: “true”
     ui:
       message: “Hello, ITHAKA!”
     ingress:
