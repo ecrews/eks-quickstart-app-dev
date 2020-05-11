@@ -1,0 +1,11 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
+spec:
+  releaseName: kubernetes-dashboard
+  chart:
+    git: https://github.com/ecrews/gitops-demo-fluxcd
+    path: charts/kubernetes-dashboard
+    ref: HEAD
