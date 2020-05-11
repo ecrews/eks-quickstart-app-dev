@@ -1,0 +1,14 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: amazon-cloudwatch
+  namespace: amazon-cloudwatch
+spec:
+  releaseName: amazon-cloudwatch
+  chart:
+    git: https://github.com/ecrews/gitops-demo-fluxcd
+    path: charts/amazon-cloudwatch
+    ref: HEAD
+  values:
+    cluster:
+      name: "cluster-0"
