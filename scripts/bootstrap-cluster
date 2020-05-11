@@ -20,11 +20,9 @@ kubectl -n flux rollout status deployment/helm-operator
 
 # Setup GitHub write access for Flux.
 FLUX_KEY="$(fluxctl identity --k8s-fwd-ns flux)"
-
 current_context="$(kubectl config current-context)"
 cluster="${current_context#*@}"
 github_access_token="$(cat ${HOME}/github_access_token)"
-# Remove deploy key if it already exists.
 
 curl \
  -i \
