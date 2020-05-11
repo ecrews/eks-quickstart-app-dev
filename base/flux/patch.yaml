@@ -16,6 +16,7 @@ spec:
             - --git-path=clusters/cluster-0
             - --git-poll-interval=30s
             - --sync-interval=30s
+            - --sync-garbage-collection=true
             - --git-user=ecrews
             - --git-email=ecrews@users.noreply.github.com
             - --git-url=git@github.com:ecrews/gitops-demo-fluxcd
