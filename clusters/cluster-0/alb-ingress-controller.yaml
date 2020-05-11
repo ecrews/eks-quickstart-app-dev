@@ -1,0 +1,14 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: alb-ingress-controller
+  namespace: kube-system
+spec:
+  releaseName: alb-ingress-controller
+  chart:
+    git: https://github.com/ecrews/gitops-demo-fluxcd
+    path: charts/alb-ingress-controller
+    ref: HEAD
+  values:
+    cluster:
+      name: "cluster-0"

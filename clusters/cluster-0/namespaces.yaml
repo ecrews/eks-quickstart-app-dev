@@ -1,0 +1,11 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: namespaces
+  namespace: kube-system
+spec:
+  releaseName: namespaces
+  chart:
+    git: https://github.com/ecrews/gitops-demo-fluxcd
+    path: charts/namespaces
+    ref: HEAD
